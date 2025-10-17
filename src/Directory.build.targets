@@ -4,7 +4,6 @@
     </PropertyGroup>
 
     <PropertyGroup Condition="'$(MakeFlavor)' == 'rid' Or '$(MakeFlavor)' == 'meta'">
-        <TargetFramework>netstandard2.0</TargetFramework>
         <!-- NU5128: these packages intentionally contain no managed code -->
         <NoWarn>NU5128</NoWarn>
     </PropertyGroup>
