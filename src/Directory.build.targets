@@ -1,6 +1,11 @@
 <Project>
     <PropertyGroup Condition="'$(MakeFlavor)' == 'rid' And '$(MakeFlavorRid)' != ''">
         <PackageId>$(PackageId).$(MakeFlavorRid)</PackageId>
+        <Description>$(Description) - "$(MakeFlavorRid)" package - just contains the native binaries for $(MakeFlavorRid) and references the "Core" package</Description>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(MakeFlavor)' == 'meta'">
+        <Description>$(Description) - "Meta" package - just references all of the native binary packages and by transitivity the "Core" package</Description>
     </PropertyGroup>
 
     <PropertyGroup Condition="'$(MakeFlavor)' == 'rid' Or '$(MakeFlavor)' == 'meta'">
@@ -9,7 +14,8 @@
     </PropertyGroup>
 
     <PropertyGroup Condition="'$(MakeFlavor)' != 'rid'">        
-        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>        
+        <Copyright>© 2025 Felix Rüdiger</Copyright>
     </PropertyGroup>
 
     <ItemGroup Condition="'$(MakeFlavor)' != 'rid'">

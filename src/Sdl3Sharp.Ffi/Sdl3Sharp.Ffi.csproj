@@ -7,6 +7,7 @@
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     
     <PackageId>$(PackageId).Core</PackageId>
+    <Description>$(Description) - "Core" package - just contains the managed binding code</Description>
 
     <Deterministic>true</Deterministic>
     <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
