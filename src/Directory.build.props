@@ -1,0 +1,17 @@
+<Project>
+    <PropertyGroup>
+        <TargetFramework>net9.0</TargetFramework>
+
+        <PackageId>Sdl3Sharp.Ffi</PackageId>
+        <Version>0.5.0</Version>
+        <VersionSuffix>alpha</VersionSuffix>
+        <Authors>Felix Rüdiger</Authors>
+        <PackageIcon>icon.png</PackageIcon>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <None Include="../../assets/icon_light.png" Pack="true" PackagePath="icon.png" />
+        <None Include="../../README.md" Pack="true" PackagePath="" />
+    </ItemGroup>
+</Project>

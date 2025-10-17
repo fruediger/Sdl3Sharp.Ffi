@@ -1,0 +1,19 @@
+<Project>
+    <PropertyGroup Condition="'$(MakeFlavor)' == 'rid' And '$(MakeFlavorRid)' != ''">
+        <PackageId>$(PackageId).$(MakeFlavorRid)</PackageId>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(MakeFlavor)' == 'rid' Or '$(MakeFlavor)' == 'meta'">
+        <TargetFramework>netstandard2.0</TargetFramework>
+        <!-- NU5128: these packages intentionally contain no managed code -->
+        <NoWarn>NU5128</NoWarn>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(MakeFlavor)' != 'rid'">        
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    </PropertyGroup>
+
+    <ItemGroup Condition="'$(MakeFlavor)' != 'rid'">
+        <None Include="../../LICENSE.md" Pack="true" PackagePath="" />
+    </ItemGroup>
+</Project>
