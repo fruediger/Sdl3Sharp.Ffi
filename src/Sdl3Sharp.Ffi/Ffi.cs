@@ -1,5 +1,4 @@
-﻿using Sdl3Sharp.Ffi.Internal;
-using Sdl3Sharp.Ffi.Internal.Interop.NativeImportConditions;
+﻿using Sdl3Sharp.Ffi.Internal.Interop.NativeImportConditions;
 using Sdl3Sharp.SourceGeneration;
 using System;
 using System.Diagnostics.CodeAnalysis;
@@ -45,28 +44,28 @@ public static partial class Ffi
 	{
 		if (clrType is not null)
 		{
-			     if (clrType == typeof(void))                     { fixedArgumentTypeOrReturnType = Type.Void;       return true; }
+			     if (clrType == typeof(void))                              { fixedArgumentTypeOrReturnType = Type.Void;       return true; }
 			else if (clrType == typeof(bool)
-				  || clrType == typeof(byte))                     { fixedArgumentTypeOrReturnType = Type.UInt8;      return true; }
-			else if (clrType == typeof(sbyte))                    { fixedArgumentTypeOrReturnType = Type.SInt8;      return true; }
+				  || clrType == typeof(byte))                              { fixedArgumentTypeOrReturnType = Type.UInt8;      return true; }
+			else if (clrType == typeof(sbyte))                             { fixedArgumentTypeOrReturnType = Type.SInt8;      return true; }
 			else if (clrType == typeof(ushort)
-				  || clrType == typeof(char))                     { fixedArgumentTypeOrReturnType = Type.UInt16;     return true; }
-			else if (clrType == typeof(short))                    { fixedArgumentTypeOrReturnType = Type.SInt16;     return true; }
-			else if (clrType == typeof(uint))                     { fixedArgumentTypeOrReturnType = Type.UInt32;     return true; }
-			else if (clrType == typeof(int))                      { fixedArgumentTypeOrReturnType = Type.SInt32;     return true; }
-			else if (clrType == typeof(ulong))                    { fixedArgumentTypeOrReturnType = Type.UInt64;     return true; }
-			else if (clrType == typeof(long))                     { fixedArgumentTypeOrReturnType = Type.SInt64;     return true; }
-			else if (clrType == typeof(float))                    { fixedArgumentTypeOrReturnType = Type.Float;      return true; }
-			else if (clrType == typeof(double))                   { fixedArgumentTypeOrReturnType = Type.Double;     return true; }
+				  || clrType == typeof(char))                              { fixedArgumentTypeOrReturnType = Type.UInt16;     return true; }
+			else if (clrType == typeof(short))                             { fixedArgumentTypeOrReturnType = Type.SInt16;     return true; }
+			else if (clrType == typeof(uint))                              { fixedArgumentTypeOrReturnType = Type.UInt32;     return true; }
+			else if (clrType == typeof(int))                               { fixedArgumentTypeOrReturnType = Type.SInt32;     return true; }
+			else if (clrType == typeof(ulong))                             { fixedArgumentTypeOrReturnType = Type.UInt64;     return true; }
+			else if (clrType == typeof(long))                              { fixedArgumentTypeOrReturnType = Type.SInt64;     return true; }
+			else if (clrType == typeof(float))                             { fixedArgumentTypeOrReturnType = Type.Float;      return true; }
+			else if (clrType == typeof(double))                            { fixedArgumentTypeOrReturnType = Type.Double;     return true; }
 			else if (clrType == typeof(nuint)
 				  || clrType == typeof(nint)
 				  || clrType.IsPointer
 				  || clrType.IsFunctionPointer
-				  || clrType.IsUnmanagedFunctionPointer)          { fixedArgumentTypeOrReturnType = Type.Pointer;     return true; }
-			else if (clrType.IsEnum)                              { return TryGetFixedArgumentTypeOrReturnTypeForClrType(clrType.GetEnumUnderlyingType(), out fixedArgumentTypeOrReturnType); }
+				  || clrType.IsUnmanagedFunctionPointer)                   { fixedArgumentTypeOrReturnType = Type.Pointer;     return true; }
+			else if (clrType.IsEnum)                                       { return TryGetFixedArgumentTypeOrReturnTypeForClrType(clrType.GetEnumUnderlyingType(), out fixedArgumentTypeOrReturnType); }
 			else if (clrType.IsValueType
-				  && Helpers.SizeOfOrDefault(clrType) is var size
-				  && size is > 0)                                 { fixedArgumentTypeOrReturnType = TypeStruct(size); return true; }
+				  && RuntimeHelpers.SizeOf(clrType.TypeHandle) is var size
+				  && size is > 0)                                          { fixedArgumentTypeOrReturnType = TypeStruct(size); return true; }
 		}
 
 		fixedArgumentTypeOrReturnType = null;
@@ -83,21 +82,21 @@ public static partial class Ffi
 				  || clrType == typeof(ushort)
 				  || clrType == typeof(short)
 				  || clrType == typeof(char)
-				  || clrType == typeof(int))                      { variadicArgumentType = Type.SInt32;      return true; }
-			else if (clrType == typeof(uint))                     { variadicArgumentType = Type.UInt32;      return true; }
-			else if (clrType == typeof(ulong))                    { variadicArgumentType = Type.UInt64;      return true; }
-			else if (clrType == typeof(long))                     { variadicArgumentType = Type.SInt64;      return true; }
+				  || clrType == typeof(int))                               { variadicArgumentType = Type.SInt32;      return true; }
+			else if (clrType == typeof(uint))                              { variadicArgumentType = Type.UInt32;      return true; }
+			else if (clrType == typeof(ulong))                             { variadicArgumentType = Type.UInt64;      return true; }
+			else if (clrType == typeof(long))                              { variadicArgumentType = Type.SInt64;      return true; }
 			else if (clrType == typeof(float)
-				  || clrType == typeof(double))                   { variadicArgumentType = Type.Double;      return true; }
+				  || clrType == typeof(double))                            { variadicArgumentType = Type.Double;      return true; }
 			else if (clrType == typeof(nuint)
 				  || clrType == typeof(nint)
 				  || clrType.IsPointer
 				  || clrType.IsFunctionPointer
-				  || clrType.IsUnmanagedFunctionPointer)          { variadicArgumentType = Type.Pointer;     return true; }
-			else if (clrType.IsEnum)                              { return TryGetVariadicArgumentTypeForClrType(clrType.GetEnumUnderlyingType(), out variadicArgumentType); }
+				  || clrType.IsUnmanagedFunctionPointer)                   { variadicArgumentType = Type.Pointer;     return true; }
+			else if (clrType.IsEnum)                                       { return TryGetVariadicArgumentTypeForClrType(clrType.GetEnumUnderlyingType(), out variadicArgumentType); }
 			else if (clrType.IsValueType
-				  && Helpers.SizeOfOrDefault(clrType) is var size
-				  && size is > 0)                                 { variadicArgumentType = TypeStruct(size); return true; }
+				  && RuntimeHelpers.SizeOf(clrType.TypeHandle) is var size
+				  && size is > 0)                                          { variadicArgumentType = TypeStruct(size); return true; }
 		}
 
 		variadicArgumentType = null;

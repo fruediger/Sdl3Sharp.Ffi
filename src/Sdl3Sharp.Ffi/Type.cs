@@ -196,7 +196,7 @@ public sealed partial class Type : IDisposable
 			TypeKind.SInt32 => clrType == typeof(int) || (Unsafe.SizeOf<nint>() == sizeof(int) && clrType == typeof(nint)) || (ignoreIntegralSignedness && (clrType == typeof(uint) || (Unsafe.SizeOf<nuint>() == sizeof(int) && clrType == typeof(nuint)))),
 			TypeKind.UInt64 => clrType == typeof(ulong) || (Unsafe.SizeOf<nuint>() == sizeof(ulong) && clrType == typeof(nuint)) || (ignoreIntegralSignedness && (clrType == typeof(long) || (Unsafe.SizeOf<nint>() == sizeof(ulong) && clrType == typeof(nint)))),
 			TypeKind.SInt64 => clrType == typeof(long) || (Unsafe.SizeOf<nint>() == sizeof(long) && clrType == typeof(nint)) || (ignoreIntegralSignedness && (clrType == typeof(ulong) || (Unsafe.SizeOf<nuint>() == sizeof(long) && clrType == typeof(nuint)))),
-			TypeKind.Struct => clrType.IsValueType && unchecked((nuint)Helpers.SizeOfOrDefault(clrType)) <= Size,
+			TypeKind.Struct => clrType.IsValueType && unchecked((nuint)RuntimeHelpers.SizeOf(clrType.TypeHandle)) <= Size,
 			TypeKind.Pointer => clrType == typeof(nint) || clrType == typeof(nuint) || clrType.IsPointer || clrType.IsFunctionPointer || clrType.IsUnmanagedFunctionPointer,
 			TypeKind.Complex => false, // simply return false for now
 			_ => false
