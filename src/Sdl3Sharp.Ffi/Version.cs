@@ -111,7 +111,7 @@ public readonly struct Version(int major, int minor, int patch) :
 		charsWritten++;
 		destination = destination[1..];
 
-		b = Major.TryFormat(destination, out tmp, format, provider);
+		b = Minor.TryFormat(destination, out tmp, format, provider);
 		charsWritten += tmp;
 
 		if (!b) { return false; }
