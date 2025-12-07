@@ -7,10 +7,6 @@ namespace Sdl3Sharp.Ffi.Internal.Interop;
 
 internal sealed class Library : INativeImportLibrary
 {
-	internal static readonly bool TypeHasLongDoubleSupport        = true,
-						          TypeHasComplexSupport           = true,
-						          TypeHasComplexLongDoubleSupport = true;
-
 	static (string? libraryName, DllImportSearchPath? searchPath) INativeImportLibrary.GetLibraryNameAndSearchPath() => (
 		"libffi",
 		DllImportSearchPath.AssemblyDirectory | DllImportSearchPath.UseDllDirectoryForDependencies | DllImportSearchPath.ApplicationDirectory | DllImportSearchPath.UserDirectories
@@ -22,20 +18,20 @@ internal sealed class Library : INativeImportLibrary
 		{
 			case nameof(Type.ffi_type_longdouble):
 			{
-				Unsafe.AsRef(in TypeHasLongDoubleSupport) = false;
+				mTypeHasLongDoubleSupport = false;
 				return true;
 			}
 			
 			case nameof(Type.ffi_type_complex_float):
 			case nameof(Type.ffi_type_complex_double):
 			{
-				Unsafe.AsRef(in TypeHasComplexSupport) = false;
+				mTypeHasComplexSupport = false;
 				return true;
 			}
 
 			case nameof(Type.ffi_type_complex_longdouble):
 			{
-				Unsafe.AsRef(in TypeHasComplexLongDoubleSupport) = false;
+				mTypeHasComplexLongDoubleSupport = false;
 				return true;
 			}
 		}
@@ -44,4 +40,13 @@ internal sealed class Library : INativeImportLibrary
 
 		return true;
 	}
+
+	private static bool mTypeHasLongDoubleSupport = true;
+	public static bool TypeHasLongDoubleSupport { [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)] get => mTypeHasLongDoubleSupport; }
+
+	private static bool mTypeHasComplexSupport = true;
+	public static bool TypeHasComplexSupport { [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)] get => mTypeHasComplexSupport; }
+
+	private static bool mTypeHasComplexLongDoubleSupport = true;
+	public static bool TypeHasComplexLongDoubleSupport { [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)] get => mTypeHasComplexLongDoubleSupport; }
 }
