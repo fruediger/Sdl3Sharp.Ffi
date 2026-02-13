@@ -4,7 +4,7 @@
 
         <PackageId>Sdl3Sharp.Ffi</PackageId>
         <VersionPrefix>0.5.0</VersionPrefix>
-        <VersionSuffix>alpha4</VersionSuffix>        
+        <VersionSuffix>alpha5</VersionSuffix>        
         <Description>SDL3#'s libffi bindings</Description>
         <Authors>Felix Rüdiger</Authors>
 
