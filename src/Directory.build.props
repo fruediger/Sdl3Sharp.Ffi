@@ -8,7 +8,7 @@
         <Description>SDL3#'s libffi bindings</Description>
         <Authors>Felix Rüdiger</Authors>
 
-        <PackageProjectUrl>https://github.com/fruediger/Sdl3Sharp.Ffi</PackageProjectUrl>
+        <PackageProjectUrl>https://github.com/Sdl3Sharp/Sdl3Sharp.Ffi</PackageProjectUrl>
         <PackageTags>sdl;sdl3;sdl3sharp;sdl3#;ffi;libffi</PackageTags>
         <PackageIcon>icon.png</PackageIcon>
         <PackageReadmeFile>README.md</PackageReadmeFile>

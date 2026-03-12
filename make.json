@@ -3,8 +3,8 @@
   "logoFile":                   "./assets/icon.txt",
 
   "runtimesVersion":            "3.5.2",
-  "runtimesUrl":                "https://github.com/fruediger/libffi/releases/download/v{0}/runtimes.zip",
-  "runtimesLicenseFileUrl":     "https://github.com/fruediger/libffi/releases/download/v{0}/LICENSE",
+  "runtimesUrl":                "https://github.com/Sdl3Sharp/libffi/releases/download/v{0}/runtimes.zip",
+  "runtimesLicenseFileUrl":     "https://github.com/Sdl3Sharp/libffi/releases/download/v{0}/LICENSE",
 
   "outputDir":                  "./build",
   "cacheDir":                   "./src/.cache",
